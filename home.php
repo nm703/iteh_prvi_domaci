@@ -209,7 +209,7 @@ include("process.php");
 
 
  
- <!-- switch sa izmeni ili obrisi -->
+ <!-- switch sa izmeni -->
   <?php 
   include ("./db/konekcija.php");
       if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
@@ -254,8 +254,8 @@ include("process.php");
           if (isset ($_POST['naslov']) && isset ($_POST['tekst'])){
           $naslov = $_POST['naslov'];
           $tekst = $_POST['tekst'];
-          $idclana = $_SESSION['id'];
-          $upit="UPDATE novosti SET naslov='". $naslov ."', tekst='" . $tekst . "' WHERE idnovosti=". $id."AND idclana=".$idclana;
+          $idclana = $_SESSION['idclana'];
+          $upit="UPDATE novosti SET naslov='". $naslov ."', tekst='" . $tekst."', idclana=".$idclana. " WHERE idnovosti=". $id;
           if ($conn->query($upit)){
           if ($conn->affected_rows > 0 ){
           echo '<p>Uspesno ste izmenili vest</p>';

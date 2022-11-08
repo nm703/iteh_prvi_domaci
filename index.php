@@ -1,7 +1,7 @@
 
 <?php
-
-include "process.php";
+// start_session();
+include ("process.php");
 
 ?>
 

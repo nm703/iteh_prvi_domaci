@@ -1,6 +1,6 @@
 <?php 
 
-// session_start();
+session_start();
   include ("./includes/liste.php");
   include ("./db/konekcija.php");
   include ("user.php");

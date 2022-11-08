@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-// za pronalazenje vesti
+// za pronalazenje vesti, ajax
 
 $("#txt").keyup(function(){
     var vrednost = $("#txt").val();
