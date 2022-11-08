@@ -11,7 +11,7 @@
 	<div >	
 	  			<p style="text-align:center;  font-weight: bold;">
 	  				<?php 
-	  				echo "$copyright <br> Domaci by $myName";
+	  				echo "$copyright <br> ITEH Domaci by $myName";
 
 	  			 		?>
 	  			 </p>

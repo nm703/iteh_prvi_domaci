@@ -1,20 +1,17 @@
 
-
 <?php
 
-$mysql_server = "localhost";
-$mysql_user = "root";
-$mysql_password = "";
-$mysql_db = "baza";
+$host = "localhost";
+$db = "baza";
+$username = "root";
+$password = "";
 
-$mysqli = new mysqli($mysql_server, $mysql_user, $mysql_password, $mysql_db);
+$conn = new mysqli($host, $username, $password, $db);
 
-if ($mysqli->connect_errno)
-{
-    printf("Konekcija je neuspesna: %s\n", $mysqli->connect_error);
-    exit();
+if($conn->connect_errno){
+    exit("Konekcija neuspesna: ".$conn->connect_errno);
 }
-$mysqli-> set_charset("utf8");
+
 
 
 ?>

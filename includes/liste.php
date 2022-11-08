@@ -11,7 +11,11 @@
 				array(
 					"stranica"=>"kontakt.php",
 					"naziv"=>"Kontakt"
-					)
+					),
+					array(
+						"stranica"=>"logout.php",
+						"naziv"=>"Logout"
+						)
 		);
 
 

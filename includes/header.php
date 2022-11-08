@@ -1,5 +1,5 @@
 <?php 
-  include ('includes/liste.php');
+  include ('liste.php');
  ?>
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,7 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>
 
   
 </head>
@@ -31,7 +32,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
        <?php 
-          include('includes/nav.php');
+          include('nav.php');
          ?>
     </div>
   </div><!--comentar-->
