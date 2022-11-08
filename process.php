@@ -1,6 +1,6 @@
 <?php 
 
-session_start();
+// session_start();
   include ("./includes/liste.php");
   include ("./db/konekcija.php");
   include ("user.php");
@@ -32,25 +32,13 @@ if (isset($_POST['log_email']) && isset($_POST['log_password'])) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-  //ovde ide brisanje podataka 
-  
-  //Unos podataka
+  // UNOS VESTI
 
   if (isset($_POST["submit"])) {
     $naslov=$_POST["naslov"];
     $tekst=$_POST["tekst"];
 
-    $idclana = $_SESSION['id'];
+    $idclana = $_SESSION['idclana'];
   
     $sql = "INSERT INTO novosti (naslov, tekst, vreme, idclana) VALUES ('$naslov' , '$tekst', NOW(), '$idclana' ) " ;
 
@@ -62,32 +50,8 @@ if (isset($_POST['log_email']) && isset($_POST['log_password'])) {
         echo "GRESKA: " . $sql . "<br>" . $conn->error;
     }
 
-    exit();
-
     }
 
-
-    if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
-      $akcija = $_GET['akcija'];
-      $id = $_GET['idnovosti'];
-      switch ($akcija){
-        case "brisanje":
-              $upit = "DELETE FROM novosti WHERE idnovosti = ".$id;
-              if ($conn->query($upit) === TRUE) {
-              echo '<script language="javascript">';
-              echo 'alert("Uspesno ste obrisali vest")';
-              echo '</script>'; 
-              } else {
-                  echo "GRESKA: " . $upit . "<br>" . $conn->error;
-              }
-              break;
-      
-      
-      
-      break;
-      }
-    
-    exit();
-      }
+   
   
  ?>

@@ -3,9 +3,9 @@ if (!isset ($_GET["unos"])){
     echo "Parametar Unos nije prosleđen!";
 } else {
     $pomocna=$_GET["unos"];
-    include ("konekcija.php");
+    include ("./db/konekcija.php");
     $sql="SELECT idnovosti,naslov FROM novosti WHERE naslov LIKE '$pomocna%'ORDER BY naslov";
-    $rezultat = $mysqli->query($sql);
+    $rezultat = $conn->query($sql);
         if ($rezultat->num_rows==0)
         {
             echo "U bazi ne postoji naslov koja počinje na " . $pomocna;
@@ -20,6 +20,6 @@ if (!isset ($_GET["unos"])){
         }
         }
     
-        $mysqli->close();
+        $conn->close();
 }
 ?>

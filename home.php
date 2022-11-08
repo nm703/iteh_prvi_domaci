@@ -9,6 +9,31 @@ if (empty($_SESSION['loggeduser']) || $_SESSION['loggeduser'] == '') {
     exit();
 }
 
+// brisanje vesti, na pocetak zbog ucitavanja novosti
+
+if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
+  $akcija = $_GET['akcija'];
+  $id = $_GET['idnovosti'];
+  switch ($akcija){
+    case "brisanje":
+          $upit = "DELETE FROM novosti WHERE idnovosti = ".$id;
+          if ($conn->query($upit) === TRUE) {
+          echo '<script language="javascript">';
+          echo 'alert("Uspesno ste obrisali vest")';
+          echo '</script>'; 
+          } else {
+              echo "GRESKA: " . $upit . "<br>" . $conn->error;
+          }
+          break;
+  
+  
+  
+  break;
+  }
+
+
+  }
+
 
 ?>
 
@@ -77,6 +102,14 @@ if (empty($_SESSION['loggeduser']) || $_SESSION['loggeduser'] == '') {
     </div>
   </div><!--komentar-->
 </nav>
+
+<!-- dodaj novu vest, mora pre ucitavanja novosti da bi se prikazala i nova -->
+<?php
+
+include("process.php");
+
+?>
+
 </div> <!--div class container fluid/container za meni-->
 <div class="container">
 
@@ -146,7 +179,7 @@ if (empty($_SESSION['loggeduser']) || $_SESSION['loggeduser'] == '') {
 
          ?>
 	
-	
+
 
 
 </div>
@@ -172,33 +205,37 @@ if (empty($_SESSION['loggeduser']) || $_SESSION['loggeduser'] == '') {
         <div id="prikaz_rezultata"></div>
 
   </form>
-      
+
+
+
+ 
+ <!-- switch sa izmeni ili obrisi -->
   <?php 
-  include ('db/konekcija.php');
+  include ("./db/konekcija.php");
       if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
       $akcija = $_GET['akcija'];
       $id = $_GET['idnovosti'];
-    
       switch ($akcija){
-      case "izmena_forma":
-      $sql="SELECT idnovosti, naslov, tekst FROM novosti WHERE idnovosti=".$id;
-      if (!$q=$conn->query($sql)){
-        echo "<p>Nastala je greska pri izvodenju upita</p>" . mysql_query();
-        exit();
-      } else {
-      if ($q->num_rows!=1){
-      echo "<p>Nepostojeća novost.</p>";
-      exit();
-      } else {
+        case "izmena_forma":
+            $sql="SELECT idnovosti, naslov, tekst FROM novosti WHERE idnovosti=".$id;
+          if (!$q=$conn->query($sql)){
+            echo "<p>Nastala je greska pri izvodenju upita</p>" . mysql_query();
+            exit();
+          }
+          else {
+               if ($q->num_rows!=1)
+                {
+                      echo "<p>Nepostojeća novost.</p>";
+                } 
+                else {
 
       $novost = $q->fetch_object();
       $naslov = $novost->naslov;
       $tekst = $novost->tekst;
-      
 
   
   ?>
-  <form method="post" action="?akcija=izmena&idnovosti=<?php echo $_GET['idnovosti'];?>">
+     <form method="post" action="?akcija=izmena&idnovosti=<?php echo $_GET['idnovosti'];?>">
       <h2 class="form-signin-heading">Izmenite vest</h2>
 
         <label for="inputNaslov" class="sr-only">Naslov</label>
@@ -208,33 +245,37 @@ if (empty($_SESSION['loggeduser']) || $_SESSION['loggeduser'] == '') {
         <input id="inputTekst" class="form-control" placeholder="Tekst vesti" required autofocus name="tekst" name="tekst" value="<?php echo $tekst;?>"/>
         
         <button class="btn btn-lg btn-default btn-block" name="unos" value="Ubaci" >Dodaj izmenjenu vest</button>
-  </form>
-  <?php
-  } 
-  }
-  break;
-    case "izmena":
-      if (isset ($_POST['naslov']) && isset ($_POST['tekst'])){
-      $naslov = $_POST['naslov'];
-      $tekst = $_POST['tekst'];
-      $upit="UPDATE novosti SET naslov='". $naslov ."', tekst='" . $tekst . "' WHERE idnovosti=". $id;
-      if ($conn->query($upit)){
-      if ($conn->affected_rows > 0 ){
-      echo '<p>Uspesno ste izmenili vest</p>';
-	  echo('<a class="btn btn-primary btn-lg"  href="index.php">Osvezi </a>');
-      } else {
-      echo "<p>Novost nije izmenjena.</p>";
-      }
-      } else {
-      echo "<p>Nastala je greška pri izmeni novosti</p>" ;
-      }
-      } else {
-      echo "<p>Nisu prosleđeni parametri za izmenu";
-      }
+  </form>   
+  <?php 
+                }
+              }
+        break;
+        case "izmena":
+          if (isset ($_POST['naslov']) && isset ($_POST['tekst'])){
+          $naslov = $_POST['naslov'];
+          $tekst = $_POST['tekst'];
+          $idclana = $_SESSION['id'];
+          $upit="UPDATE novosti SET naslov='". $naslov ."', tekst='" . $tekst . "' WHERE idnovosti=". $id."AND idclana=".$idclana;
+          if ($conn->query($upit)){
+          if ($conn->affected_rows > 0 ){
+          echo '<p>Uspesno ste izmenili vest</p>';
+        echo('<a class="btn btn-primary btn-lg"  href="home.php">Osvezi </a>');
+          } else {
+          echo "<p>Novost nije izmenjena.</p>";
+          }
+          } else {
+          echo "<p>Nastala je greška pri izmeni novosti</p>" ;
+          }
+          } else {
+          echo "<p>Nisu prosleđeni parametri za izmenu";
+          }
+          
+          
+            }}
       
-      
-        }}
-  ?>
+
+  
+  ?> 
 </div>
 
 
