@@ -20,7 +20,7 @@ if (isset($_POST['log_email']) && isset($_POST['log_password'])) {
         $_SESSION['ime'] = $row['ime'];
         $_SESSION['idclana'] = $row['id'];
         $_SESSION['loggeduser'] = "prijavljen";
-        echo "Vi ste ".$_SESSION["ime"];
+        
         header('Location: home.php');
         exit();
         
@@ -31,6 +31,63 @@ if (isset($_POST['log_email']) && isset($_POST['log_password'])) {
         exit();
     }
 }
+
+//REGISTER
+
+        if(isset($_POST["newime"]) && isset($_POST["newprezime"]) && isset($_POST["newemail"]) && isset($_POST["newpassword"]) && isset($_POST["newstatus"]))
+        {	
+          $ime = $_POST["newime"];
+          $prezime = $_POST["newprezime"];
+
+          $email = $_POST["newemail"];
+
+          $password = $_POST["newpassword"];
+          $status = $_POST["newstatus"];
+          
+        
+          $clan = new User($conn);
+          
+          
+          $sacuvano = $clan->vecPostoji($email, $conn);
+        
+            if ($sacuvano == 1) {
+              echo '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>  
+                 Clan sa email adresom vec postoji! 
+              </div>';
+            }
+           else {
+
+          
+          $stmt=$conn->prepare("INSERT INTO clanovi(ime, prezime,
+                              email, 
+                              password, idstatus)
+                            VALUES
+                                (?,?,?,?,?)"); 
+          
+            
+          $stmt->bind_param("ssssi", $ime, $prezime, $email, $password, $status);
+        
+          if($stmt->execute())
+          {
+            echo '<div class="alert alert-success"><br><button type="button" class="close" data-dismiss="alert">&times </button> 
+                 Uspesna registracija! 
+              </div>';
+              
+             
+              exit();		
+          }	
+          else
+          {
+            echo  '<div class="alert alert-danger"> <br>
+            <button type="button" class="close" data-dismiss="alert">&times</button>
+                  Neuspesna registracija!  
+                </div>';		
+          }
+        }
+
+      }
+
+
 
   // UNOS VESTI
 

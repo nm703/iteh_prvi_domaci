@@ -35,20 +35,28 @@ include ("process.php");
 <body>
     <div class="login-form">
         <div class="main-div">
-            <form method="POST" action="#">
+        
+            <form id = "form1" method="POST" action="#">
                 <h1>Trkacki forum</h1>
-                <div class="imgcontainer">
-                    <!-- <img src="images/login.png"> -->
-                </div>
+                
                 <div class="container">
                     <input type="text" placeholder="Email" name="log_email" id = "log_email" class="form-control" required>
                     <br>
                     <input type="password" placeholder="Password" name="log_password" id = "log_password" class="form-control" required>
                     <br>
-                    <button class="btn" type="sumbit">Prijavi se</button>
+                    <button class="btn btn-info" type="sumbit">Prijavi se</button>
+
+
                 </div>
+                <!-- Register  -->
+                    <div class="text-center">
+                        <p>Nisi clan? <a href="register.php">Registruj se</a></p>
+                    </div>
+
             </form>
         </div>
+
+       
 </body>
 
 </html>

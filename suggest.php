@@ -14,7 +14,8 @@ if (!isset ($_GET["unos"])){
             while($red = $rezultat->fetch_object())
             {
         ?>
-            <a href="#" onclick="place(this)"> <?php  echo $red->naslov;?> </a>
+           
+            <a href="#" onclick="place(this)"> <?php  echo $red->naslov;?> </a> 
             <br/>
 <?php
         }

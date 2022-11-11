@@ -19,6 +19,27 @@ $("#txt").keyup(function(){
        });
     });
 
+    //pocasni clanovi
+
+    $('#clanovi-dropdown').on('change', function() {
+      var user_id = this.value;
+      $.ajax({
+          url: "showUser.php",
+          type: "POST",
+          data: {
+              user_id: user_id
+          },
+          cache: false,
+          success: function(response) {
+              $('#message').html(response);
+              
+          }
+      });
+  });
+
+
+
+
     });
    
   

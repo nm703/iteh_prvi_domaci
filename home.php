@@ -5,7 +5,6 @@ session_start();
 
 if (empty($_SESSION['loggeduser']) || $_SESSION['loggeduser'] == '') {
     header("Location: index.php");
-    die();
     exit();
 }
 
@@ -20,7 +19,12 @@ if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
           if ($conn->query($upit) === TRUE) {
           echo '<script language="javascript">';
           echo 'alert("Uspesno ste obrisali vest")';
-          echo '</script>'; 
+          
+          echo '</script>';
+
+
+
+          
           } else {
               echo "GRESKA: " . $upit . "<br>" . $conn->error;
           }
@@ -82,6 +86,7 @@ if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
 
       <!--end Ajax-->
 
+
 </head>
 <body onload="document.getElementById('txt').focus()">
 <div class="container">
@@ -131,7 +136,7 @@ include("process.php");
         echo "Nema novosti";
         } else {
 			?>
-			<table class="table table-hover">
+			<table class="table table-hover" id = "table">
 				<thead>
 					<tr>
 						<th class="text-center">Naslov</th>

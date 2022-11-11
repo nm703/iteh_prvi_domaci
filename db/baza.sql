@@ -28,6 +28,8 @@ CREATE TABLE `clanovi` (
   `password` varchar(200) NOT NULL,
   `ime` varchar(200) NOT NULL,
   `prezime` varchar(200) NOT NULL,
+  `idstatus` int(11) NOT NULL,
+  FOREIGN KEY (`idstatus`) REFERENCES `baza`.`status`(`idstatus`) 
   PRIMARY KEY ( `id` )
 ); 
 
@@ -35,15 +37,24 @@ CREATE TABLE `clanovi` (
 -- Dumping data for table `clanovi`
 --
 
-INSERT INTO `clanovi` (`id`, `email`, `password`, `ime`, `prezime`) VALUES
-(18, 'n@gmail.com', 'nevena', 'nevena', 'markovic'),
-(17, 'a@gmail.com', 'aleksa', 'aleksa', 'aleksic'),
-(16, 'visnja@gmail.com', 'visnja', 'visnja', 'lalic'),
-(20, 'marko@gmail.com', 'marko', 'marko', 'markovic'),
-(21, 'v@gmail.com', 'vukan', 'vukan', 'tripkovic'),
-(22, 'veki@gmail.com', 'vesna', 'veki', 'tripkovic'),
-(23, 'p@gmail.com', 'petar', 'petar', 'kostic'),
-(36, 'nina@gmail.com', 'nina', 'nina', 'peric');
+INSERT INTO `clanovi` (`id`, `email`, `password`, `ime`, `prezime`, `idstatus`) VALUES
+(18, 'n@gmail.com', 'nevena', 'nevena', 'markovic', '1'),
+(17, 'a@gmail.com', 'aleksa', 'aleksa', 'aleksic', '1'),
+(16, 'visnja@gmail.com', 'visnja', 'visnja', 'lalic', '1'),
+(20, 'marko@gmail.com', 'marko', 'marko', 'markovic', '2'),
+(21, 'v@gmail.com', 'vukan', 'vukan', 'tripkovic', '2'),
+(22, 'veki@gmail.com', 'vesna', 'veki', 'tripkovic', '2'),
+(23, 'p@gmail.com', 'petar', 'petar', 'kostic', '3'),
+(36, 'nina@gmail.com', 'nina', 'nina', 'peric', '3');
+
+-----------------------------------------------------------
+
+CREATE TABLE `baza`.`status` ( `idstatus` INT(11) NOT NULL, `ime` VARCHAR(10), PRIMARY KEY (`idstatus`) ); 
+
+
+INSERT INTO `baza`.`status` (`idstatus`,`ime`) VALUES (1, 'pocasni'); 
+INSERT INTO `baza`.`status` (`idstatus`, `ime`) VALUES (2, 'bivsi'); 
+INSERT INTO `baza`.`status` (`idstatus`,`ime`) VALUES (3, 'obican'); 
 
 -- --------------------------------------------------------
 
@@ -93,6 +104,8 @@ ALTER TABLE `clanovi`
 --
 ALTER TABLE `novosti`
   MODIFY `idnovosti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,23 +1,7 @@
 <?php 
   include ('./includes/header.php');
-  include ("./db/konekcija.php");
-  $poruka = '';
-  if (isset($_POST["ubaciClana"])) {
-    
-	include("user.php");
-	$clan = new User($conn);
-	
-	
-	$sacuvano = $clan->sacuvajUsera();
-    if ($sacuvano) {
-      $poruka = 'Uspesno sacuvan clan'; 
-    } else {
-       $poruka = 'Neuspesno sacuvan clan'; 
-    }
 
-  
-
-  }
+ 
   
  ?>
 <div class="container-fluid">
@@ -73,44 +57,44 @@
     
   </div>
   <div id="menu1" class="tab-pane fade">
-    <h3>Pocasni clanovi</h3>
-    <p>Ovde ce biti dodavani pocasni clanovi</p>
-  </div>
+    <div class="container mt-5">
+         <div class="row justify-content-center">
+            <div class="col-md-8">
+               <div class="card">
+                  <div class="card-header">
+                     <h2 class="text-primary">Vidi sve pocasne clanove</h2>
+                  </div>
+                  <div class="card-body">
+                     <form>
+                        <div class="form-group">
+                           <label for="CLANOVI-DROPDOWN"></label>
+                           <select class="form-control" id="clanovi-dropdown">
+                              <option value="">Pocasni clanovi</option>
+                              <?php
+                                 include "./db/konekcija.php";
+                                 $result = mysqli_query($conn,"SELECT id,ime, prezime, email FROM clanovi WHERE idstatus = 1");
+                                 while($row = mysqli_fetch_array($result)) {
+                                 ?>
+                              <option value="<?php echo $row['id'];?>"><?php echo $row["ime"];?> <?php echo $row["prezime"];?></option>
+                              <?php
+                                 }
+                                 ?>
+                           </select>
+				                    </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+    
   <div id="menu2" class="tab-pane fade">
     <h3>Bivsi clanovi</h3>
     <p>Ovde ce biti dodavani bivsi clanovi</p>
   </div>
 </div>
-<div class="col-sm-3">
-  <form class="form-signin" method="post" action="" >
-        <h2 class="form-signin-heading">Ubaci clana</h2>
 
-        <label for="inputIme" class="sr-only">Ime</label>
-        <input name="ime" type="text" id="inputIme" class="form-control" placeholder="Ime" required autofocus >
-
-        <label for="inputPrezime" class="sr-only">Prezime</label>
-        <input name="prezime" type="text" id="inputPrezime" class="form-control" placeholder="Prezime" required autofocus >
-
-        <label for="inputEmail" class="sr-only">Email</label>
-        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus >
-
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required >
-
-        
-        <button class="btn btn-lg btn-default  btn-block" name="ubaciClana" id="ubaciClana" type="submit">Ubaci clana</button>
-		<?php if($poruka !=''){
-			echo("<h3>$poruka</h3>");
-		}
-		?>
-  </form>
-
-
-
-
-
-
-</div><!--Deo za ubacivanje clanova-->
 
   </div><!--div class container fluid sa pocetka-->
 <?php 
