@@ -52,7 +52,7 @@ if (isset($_POST['log_email']) && isset($_POST['log_password'])) {
         
             if ($sacuvano == 1) {
               echo '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>  
-                 Clan sa email adresom vec postoji! 
+                 Clan sa ovom email adresom vec postoji! 
               </div>';
             }
            else {

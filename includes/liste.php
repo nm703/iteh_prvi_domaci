@@ -2,11 +2,11 @@
 	$navItems=array(
 				array(
 					"stranica"=>"home.php",
-					"naziv"=>"Pocetna"
+					"naziv"=>"Početna"
 					),
 				array(
 					"stranica"=>"clanovi.php",
-					"naziv"=>"Clanovi"
+					"naziv"=>"Članovi"
 					),
 				array(
 					"stranica"=>"kontakt.php",

@@ -122,7 +122,7 @@ include("process.php");
 
  
  <div class="col-sm-9" style="text-align: center;">
- 	<h1>Cao <?php echo ($_SESSION["ime"]); ?>! Evo novosti:</h1>
+ 	<h1>Ćao <?php echo ($_SESSION["ime"]); ?>! Evo novosti:</h1>
  	<br>
  	<br>
   <!-- ucitaj novosti -->

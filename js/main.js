@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-// za pronalazenje vesti, ajax
+// za pronalazenje vesti
 
 $("#txt").keyup(function(){
     var vrednost = $("#txt").val();
@@ -36,6 +36,8 @@ $("#txt").keyup(function(){
           }
       });
   });
+
+
 
 
 

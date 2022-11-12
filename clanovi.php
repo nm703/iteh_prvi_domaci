@@ -7,7 +7,7 @@
 <div class="container-fluid">
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#home">Aktivni</a></li>
-  <li><a data-toggle="tab" href="#menu1">Pocasni</a></li>
+  <li><a data-toggle="tab" href="#menu1">Počasni</a></li>
   <li><a data-toggle="tab" href="#menu2">Bivsi</a></li>
 </ul>
 
@@ -62,14 +62,14 @@
             <div class="col-md-8">
                <div class="card">
                   <div class="card-header">
-                     <h2 class="text-primary">Vidi sve pocasne clanove</h2>
+                     <h2 class="text-primary">Vidi sve počasne članove</h2>
                   </div>
                   <div class="card-body">
                      <form>
                         <div class="form-group">
                            <label for="CLANOVI-DROPDOWN"></label>
                            <select class="form-control" id="clanovi-dropdown">
-                              <option value="">Pocasni clanovi</option>
+                              <option value="">Počasni članovi</option>
                               <?php
                                  include "./db/konekcija.php";
                                  $result = mysqli_query($conn,"SELECT id,ime, prezime, email FROM clanovi WHERE idstatus = 1");

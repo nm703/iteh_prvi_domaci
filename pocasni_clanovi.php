@@ -26,14 +26,14 @@
             <div class="col-md-8">
                <div class="card">
                   <div class="card-header">
-                     <h2 class="text-primary">Vidi sve pocasne clanove</h2>
+                     <h2 class="text-primary">Vidi sve počasne članove</h2>
                   </div>
                   <div class="card-body">
                      <form>
                         <div class="form-group">
                            <label for="CLANOVI-DROPDOWN"></label>
                            <select class="form-control" id="clanovi-dropdown">
-                              <option value="">Clanovi</option>
+                              <option value="">Članovi</option>
                               <?php
                                  require_once "./db/konekcija.php";
                                  $result = mysqli_query($conn,"SELECT id,ime, prezime, email FROM clanovi WHERE idstatus = 1");
