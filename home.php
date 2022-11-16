@@ -1,7 +1,8 @@
 
 <?php
 include("./db/konekcija.php");
-session_start();
+include("process.php");
+
 
 if (empty($_SESSION['loggeduser']) || $_SESSION['loggeduser'] == '') {
     header("Location: index.php");
@@ -111,7 +112,7 @@ if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
 <!-- dodaj novu vest, mora pre ucitavanja novosti da bi se prikazala i nova -->
 <?php
 
-include("process.php");
+//include("process.php");
 
 ?>
 
