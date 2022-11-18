@@ -1,113 +1,90 @@
+/*
+SQLyog Community v13.1.9 (64 bit)
+MySQL - 10.4.25-MariaDB : Database - baza
+*********************************************************************
+*/
 
+/*!40101 SET NAMES utf8 */;
 
+/*!40101 SET SQL_MODE=''*/;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`baza` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
+USE `baza`;
 
+/*Table structure for table `clanovi` */
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `baza`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `clanovi`
---
+DROP TABLE IF EXISTS `clanovi`;
 
 CREATE TABLE `clanovi` (
-  `id` int(11) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `password` varchar(200) NOT NULL,
-  `ime` varchar(200) NOT NULL,
-  `prezime` varchar(200) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `password` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `ime` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `prezime` varchar(200) CHARACTER SET latin1 NOT NULL,
   `idstatus` int(11) NOT NULL,
-  FOREIGN KEY (`idstatus`) REFERENCES `baza`.`status`(`idstatus`) 
-  PRIMARY KEY ( `id` )
-); 
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `clanovi`
---
+/*Data for the table `clanovi` */
 
-INSERT INTO `clanovi` (`id`, `email`, `password`, `ime`, `prezime`, `idstatus`) VALUES
-(18, 'n@gmail.com', 'nevena', 'nevena', 'markovic', '1'),
-(17, 'a@gmail.com', 'aleksa', 'aleksa', 'aleksic', '1'),
-(16, 'visnja@gmail.com', 'visnja', 'visnja', 'lalic', '1'),
-(20, 'marko@gmail.com', 'marko', 'marko', 'markovic', '2'),
-(21, 'v@gmail.com', 'vukan', 'vukan', 'tripkovic', '2'),
-(22, 'veki@gmail.com', 'vesna', 'veki', 'tripkovic', '2'),
-(23, 'p@gmail.com', 'petar', 'petar', 'kostic', '3'),
-(36, 'nina@gmail.com', 'nina', 'nina', 'peric', '3');
+insert  into `clanovi`(`id`,`email`,`password`,`ime`,`prezime`,`idstatus`) values 
+(37,'n@gmail.com','nevena','nevena','markovic',1),
+(38,'a@gmail.com','aleksa','aleksa','aleksic',1),
+(39,'ana@gmailc.com','ana','ana','ulemek',1),
+(40,'s@gmail.com','stefan','stefan','stefanovic',2),
+(44,'p@gmail.com','pera','pera','peric',2),
+(57,'miki@gmail.com','miki','miki','miki',3);
 
------------------------------------------------------------
+/*Table structure for table `novosti` */
 
-CREATE TABLE `baza`.`status` ( `idstatus` INT(11) NOT NULL, `ime` VARCHAR(10), PRIMARY KEY (`idstatus`) ); 
-
-
-INSERT INTO `baza`.`status` (`idstatus`,`ime`) VALUES (1, 'pocasni'); 
-INSERT INTO `baza`.`status` (`idstatus`, `ime`) VALUES (2, 'bivsi'); 
-INSERT INTO `baza`.`status` (`idstatus`,`ime`) VALUES (3, 'obican'); 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `novosti`
---
+DROP TABLE IF EXISTS `novosti`;
 
 CREATE TABLE `novosti` (
-  `idnovosti` int(11) NOT NULL,
-  `naslov` varchar(200) NOT NULL,
-  `tekst` varchar(2000) NOT NULL,
+  `idnovosti` int(11) NOT NULL AUTO_INCREMENT,
+  `naslov` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `tekst` varchar(2000) CHARACTER SET latin1 NOT NULL,
   `vreme` datetime DEFAULT NULL,
-  `idclana` int(11) NOT NULL,
-  PRIMARY KEY ( `idnovosti` ),
-  FOREIGN KEY (`idclana`) REFERENCES `baza`.`clanovi`(`id`) 
+  `idclana` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idnovosti`),
+  KEY `idclana` (`idclana`),
+  CONSTRAINT `novosti_ibfk_1` FOREIGN KEY (`idclana`) REFERENCES `clanovi` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
-);
+/*Data for the table `novosti` */
 
---
--- Dumping data for table `novosti`
---
+insert  into `novosti`(`idnovosti`,`naslov`,`tekst`,`vreme`,`idclana`) values 
+(1,'Novogodisnji trk','Dodjite da Novu godinu zapocnemo na zdrav nacin. Utrci u Novu godinu, ali bukvalno.',NULL,37),
+(2,'Preko 150 clanova Beogradskog trkackog kluba na polumaratonu u Sarajevu','U nedelju, 18. septembra u Sarajevu ce biti odrzan 15. Sarajevski polumaraton. Beogradski trkacki klub kao jedan od najvecih trkackih klubova u regionu uzece ucesce.',NULL,38),
+(3,'Poceo upis u BRC Skolu trcanja!','I ove jeseni pozivamo sugradjane da budu fizicki aktivni i prikljuce se velikoj beogradskoj trkackoj zajednici! Pod sloganom “From Zero to Hero” nova sezona skole',NULL,37),
+(10,'Heroji Beograda: Prica o prestonici kroz trcanje','Svecanost pod nazivom “Heroji su medju nama” koju organizuje Beogradski maraton, ove godine obelezila su priznanja za pojedince i organizacije ',NULL,39),
+(11,'Prolecni polumaraton u Budimpesti!','Jos uvek sumiramo utiske! Vikend za nama je bio vise nego putovanje na trku!',NULL,37),
+(12,'BRC Plogging kod Brankovog mosta u nedelju!','Dzogirajte i ocistite okolinu sa Beogradskim trkackim klubom! 17. aprila u 9 casova organizujemo plogging kod Brankovog mosta, sa novobeogradske strane. ',NULL,38),
+(13,'BRC redakcija gori! Ovog leta treneri pisu za vas!','I dok odmaras imaces korisno trkacko stivo koje se lako vari a puno znaci ako se primeni. ',NULL,38),
+(14,'Stigao je Nordijac: Prvi klub nordijskog hodanja','Srbija je dobila prvi Klub nordijskog hodanja „Nordijac“. Krajem avgusta u Kulturnom centru Grad u Beogradu na manifestaciji kojoj je prisustvovalo preko 100 nordijskih hodaca',NULL,37);
 
-INSERT INTO `novosti` (`idnovosti`, `naslov`, `tekst`, `vreme`, `idclana`) VALUES
-(1, 'Poceo upis u BRC Skolu trcanja!', 'I ove jeseni pozivamo sugradjane da budu fizicki aktivni i prikljuce se velikoj beogradskoj trkackoj zajednici! Pod sloganom “From Zero to Hero” nova sezona skole', '2022-11-02 16:10:20', 16),
-(2, 'BRC redakcija gori! Ovog leta treneri pisu za vas!', 'I dok odmaras imaces korisno trkacko stivo koje se lako vari a puno znaci ako se primeni. ', '2022-11-02 16:46:51', 17),
-(3, 'Heroji Beograda: Prica o prestonici kroz trcanje', 'Svecanost pod nazivom “Heroji su medju nama” koju organizuje Beogradski maraton, ove godine obelezila su priznanja za pojedince i organizacije ', '2022-11-02 16:47:26', 20),
-(10, 'BRC Plogging kod Brankovog mosta u nedelju!', 'Dzogirajte i ocistite okolinu sa Beogradskim trkackim klubom! 17. aprila u 9 casova organizujemo plogging kod Brankovog mosta, sa novobeogradske strane. ', '2022-11-02 16:53:16', 18),
-(13, 'BRC na prolecnom polumaratonu u Budimpesti!', 'Jos uvek sumiramo utiske! Vikend za nama je bio vise nego putovanje na trku!', '2022-11-02 16:54:49', 22);
+/*Table structure for table `status` */
 
+DROP TABLE IF EXISTS `status`;
 
+CREATE TABLE `status` (
+  `idstatus` int(11) NOT NULL,
+  `ime` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`idstatus`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- ALTER TABLE `clanovi`
---   ADD PRIMARY KEY (`id`);
+/*Data for the table `status` */
 
+insert  into `status`(`idstatus`,`ime`) values 
+(1,'pocasni'),
+(2,'bivsi'),
+(3,'obican');
 
--- ALTER TABLE `novosti`
---   ADD PRIMARY KEY (`idnovosti`);
-
--- ALTER TABLE `novosti`
---   ADD FOREIGN KEY (`idclana`) REFERENCES `clanovi`(`id`);
-
-
-ALTER TABLE `clanovi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
---
--- AUTO_INCREMENT for table `novosti`
---
-ALTER TABLE `novosti`
-  MODIFY `idnovosti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
-
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
