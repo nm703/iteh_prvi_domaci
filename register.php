@@ -10,7 +10,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
-    <title>Trkacki Forum</title>
+    <title>Trkački Forum</title>
 
 <title> Registracija </title>
 		
@@ -34,7 +34,7 @@
 	<div class="container">
 		<div class="col-lg-12">
 		  
-			<h2>Registruj se na trkacki forum!</h2>
+			<h2>Registruj se na trkački forum!</h2>
 			
         <div class="registration-form">
         <div class="main-div">

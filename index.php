@@ -1,6 +1,5 @@
 
 <?php
-// start_session();
 include ("process.php");
 
 ?>
@@ -28,8 +27,8 @@ include ("process.php");
         <!-- Latest compiled JavaScript -->
         <script src="js/bootstrap.min.js"></script>
 
-            <!-- <link rel="stylesheet" href="css/style.css"> -->
-    <title>Trkacki Forum</title>
+            
+    <title>Trkački Forum</title>
 </head>
 
 <body>
@@ -37,7 +36,7 @@ include ("process.php");
         <div class="main-div">
         
             <form id = "form1" method="POST" action="#">
-                <h1>Trkacki forum</h1>
+                <h1>Trkački forum</h1>
                 
                 <div class="container">
                     <input type="text" placeholder="Email" name="log_email" id = "log_email" class="form-control" required>
@@ -50,7 +49,7 @@ include ("process.php");
                 </div>
                 <!-- Register  -->
                     <div class="text-center">
-                        <p>Nisi clan? <a href="register.php">Registruj se</a></p>
+                        <p>Nisi član? <a href="register.php">Registruj se</a></p>
                     </div>
 
             </form>

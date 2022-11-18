@@ -17,7 +17,7 @@
         include ('./db/konekcija.php');
         $sql="SELECT email, ime, prezime FROM clanovi ORDER BY id ASC";
         if (!$q=$conn->query($sql)){
-        echo "<p>Nastala je greska pri izvodenju upita</p>" . mysql_query();
+        echo "<p>Nastala je greska pri izvođenju upita</p>" . mysql_query();
         exit();
         }
         if ($q->num_rows==0){
@@ -90,8 +90,8 @@
       </div>
     
   <div id="menu2" class="tab-pane fade">
-    <h3>Bivsi clanovi</h3>
-    <p>Ovde ce biti dodavani bivsi clanovi</p>
+    <h3>Bivši clanovi</h3>
+    <p>Ovde će biti dodavani bivši članovi</p>
   </div>
 </div>
 

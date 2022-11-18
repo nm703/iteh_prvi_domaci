@@ -106,15 +106,9 @@ if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
           include('includes/nav.php');
          ?>
     </div>
-  </div><!--komentar-->
+  </div>
 </nav>
 
-<!-- dodaj novu vest, mora pre ucitavanja novosti da bi se prikazala i nova -->
-<?php
-
-//include("process.php");
-
-?>
 
 </div> <!--div class container fluid/container za meni-->
 <div class="container">
@@ -141,7 +135,7 @@ if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
 				<thead>
 					<tr>
 						<th class="text-center">Naslov</th>
-						<th class="text-center">Izmeni/Obrisi</th>
+						<th class="text-center">Izmeni/Obriši</th>
 						<th class="text-center">Tekst</th>
 						<th class="text-center">Vreme</th>
 					</tr>
@@ -160,7 +154,7 @@ if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
             
             <button  class="btn btn-primary btn-sm" name="obrisi" type="button">
                 <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> 
-                <a style="color:#fff;" href="?akcija=brisanje&idnovosti=<?php echo $red->idnovosti; ?>">Obrisi vest</a>
+                <a style="color:#fff;" href="?akcija=brisanje&idnovosti=<?php echo $red->idnovosti; ?>">Obriši vest</a>
               </button>
             <br><br>
            <button  class="btn btn-primary btn-sm" name="izmeni" type="button" >
@@ -202,9 +196,9 @@ if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
         <button class="btn btn-lg btn-default btn-block" name="submit" type="submit">Dodaj novu vest</button>
       </form>
   <form type="get" name="pretrazivanje" class="form-signin">
-        <h2 class="form-signin-heading">Pronadji vest</h2>
+        <h2 class="form-signin-heading">Pronađi vest</h2>
         <input type="text" id="txt" class="form-control" placeholder="Tekst pretrage" required autofocus> 
-        <button class="btn btn-lg btn-default btn-block" name="submit" type="button" id="sub">Pronadji</button>
+        <button class="btn btn-lg btn-default btn-block" name="submit" type="button" id="sub">Pronađi</button>
         <br>
         <div required autofokus id="livesearch"></div><br/>
         <br>
@@ -264,7 +258,7 @@ if (isset ($_GET['akcija']) && isset ($_GET['idnovosti'])){
           $upit="UPDATE novosti SET naslov='". $naslov ."', tekst='" . $tekst."', idclana=".$idclana. " WHERE idnovosti=". $id;
           if ($conn->query($upit)){
           if ($conn->affected_rows > 0 ){
-          echo '<p>Uspesno ste izmenili vest</p>';
+          echo '<p>Uspešno ste izmenili vest</p>';
         echo('<a class="btn btn-primary btn-lg"  href="home.php">Osvezi </a>');
           } else {
           echo "<p>Novost nije izmenjena.</p>";
